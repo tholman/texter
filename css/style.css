@@ -1,0 +1,177 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  overflow: hidden;
+}
+
+canvas {
+  position: absolute;
+  cursor: crosshair;
+  -webkit-user-select: none;
+}
+
+/* ----- INFO & SHARING -----  */
+
+#back {
+    font-family: Helvetica, Arial, "Lucida Grande";            
+    position: fixed;
+    top: 7px;
+    width: 190px;
+    height: 36px;
+    box-shadow: 0px 0px 4px 0px #888;
+    line-height: 10px;
+    left: -153px;
+    background: #fff;
+    z-index: 1000;
+    
+    -webkit-transition: left 250ms; 
+       -moz-transition: left 250ms; 
+         -o-transition: left 250ms;
+          -ms-trantion: left 250ms;
+            transition: left 250ms;
+}
+
+#back.open {
+    left: 0px;
+}
+
+#back a {
+    color: #1C86EE;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 13px;
+    padding-right: 0px;
+    position: absolute;
+}
+
+#back a:hover {
+    color: hotpink; 
+}
+
+#back span {
+    font-size: 50px;
+    line-height: 0px;
+    color: #444;
+    text-decoration: none;
+    font-family: Times;
+    position: absolute;
+    right: 10px;
+    top: 17px;
+    -webkit-margin-before: -3px;
+}
+
+#info-tab * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+#info-tab {
+
+    font-family: Helvetica, Arial, "Lucida Grande";
+
+    -webkit-box-shadow: 0px 0px 4px 0px #888;
+    box-shadow: 0px 0px 4px 0px #888;
+
+    -webkit-transition: left 300ms, -webkit-box-shadow 500ms; 
+       -moz-transition: left 300ms, -moz-box-shadow 500ms; 
+         -o-transition: left 300ms, -o-box-shadow 500ms;
+          -ms-trantion: left 300ms, -ms-box-shadow 500ms;
+            transition: left 300ms, box-shadow 500ms;
+
+    background-color: #ffffff;
+    height: 150px;
+    position: fixed;
+    padding-left: 5px;
+    line-height: 36px;
+    width: 630px;
+    margin-top: 11px;
+    font-size: 17px;
+    color: #444;
+    left: -598px;
+    z-index: 1000;
+    top: 40px;
+}
+
+#info-tab.open {
+    left: 0px;
+}
+
+#info-tab.highlight {
+     -webkit-box-shadow: 0px 0px 12px 0px #222;
+    box-shadow: 0px 0px 12px 0px #222;   
+}
+
+#info-tab.open #title {
+    opacity: 0;
+}
+
+
+#info-tab #title {
+    -webkit-transition: opacity 300ms; 
+       -moz-transition: opacity 300ms; 
+         -o-transition: opacity 300ms;
+          -ms-trantion: opacity 300ms;
+            transition: opacity 300ms; 
+
+
+    -webkit-transform: rotate( 90deg ) translateZ(0px); 
+       -moz-transform: rotate( 90deg ) translateZ(0px); 
+        -ms-transform: rotate( 90deg ) translateZ(0px); 
+         -o-transform: rotate( 90deg ) translateZ(0px); 
+            transform: rotate( 90deg ) translateZ(0px);
+
+    -webkit-transform-origin: 100% 0%;
+       -moz-transform-origin: 100% 0%;
+        -ms-transform-origin: 100% 0%;
+         -o-transform-origin: 100% 0%;
+            transform-origin: 100% 0%;
+
+    float: right;
+    width: 150px;
+    height: 30px;
+    position: absolute;
+    text-align: center;
+    right: 0px;
+    bottom: -30px;
+}
+
+#info-tab .info {
+    margin-left: 18px;
+    font-size: 14px;
+
+    line-height: 16px;
+    height: 110px;
+    width: 282px;
+    float: left;
+    padding-right: 18px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #111;
+    margin-right: 5px;
+    position: relative;
+}
+
+#info-tab .first {
+    border-right: 1px solid #ddd;   
+}
+
+#info-tab p {
+    position: absolute;
+    bottom: 0px;
+    font-size: 12px;
+    margin: 0px;
+}
+
+#info-tab a {
+    color: #1C86EE;
+}
+
+#info-tab a:hover {
+    color: hotpink;
+}
+
+#info-tab iframe {
+    vertical-align: bottom;
+}
