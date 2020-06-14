@@ -1,77 +1,131 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-	<head>
-		<title> Texter </title>
+  <head>
+    <title>Texter - Draw with Words</title>
+    <meta name="description" content="A creative tool that allows you to draw with words.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<!-- CSS -->
-		<link href="css/style.css" rel="stylesheet" type="text/css">
+    <!-- CSS -->
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
 
-		<!-- JS -->
-		<script type="text/javascript" src="js/libs/dat.gui.min.js"></script>
-		<script type="text/javascript" src="js/libs/animationFrame.js"></script>
-		<script type="text/javascript" src="js/texter.js"></script>
+    <!-- JS -->
+    <script type="text/javascript" src="js/libs/dat.gui.min.js"></script>
+    <script type="text/javascript" src="js/texter.js"></script>
+  </head>
 
-	</head>
+  <body>
+    <!-- Header -->
+    <div id="info-tab">
+      <div class="info first">
+        <b>Texter</b> is a little javascript experiment that lets you explore
+        your creativity by drawing with words. This app is an extension of a
+        demo from this <a href="http://generative-gestaltung.de/">book</a>
+        <p>
+          Made by: <a href="http://tholman.com"> Tim Holman </a> -
+          <a
+            href="http://twitter.com/twholman"
+            title="You'll love my tweets, I promise ;)"
+          >
+            @twholman
+          </a>
+        </p>
+      </div>
+      <div class="info">
+        This has been made using <i> Javascript </i> and the HTML5
+        <i> canvas </i> element. You can find the source on
+        <a href="http://github.com/tholman/texter">Github</a>. If you feel like supporting me, you can always <a href="https://ko-fi.com/tholman" target="_blank">buy me a coffee</a>.
+        <p>
+          <a
+            href="https://twitter.com/share"
+            class="twitter-share-button"
+            data-url="http://tholman.com/texter"
+            data-text="Texter - Draw pictures with text! - by @twholman -"
+          >
+            Tweet
+          </a>
+          <iframe
+            src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Ftholman.com%2Fexperiments%2Fhtml5%2Ftexter&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21"
+            scrolling="no"
+            frameborder="0"
+            style="
+              border: none;
+              overflow: hidden;
+              width: 107px;
+              height: 21px;
+              margin-bottom: -1px;
+            "
+            allowTransparency="true"
+          ></iframe>
+        </p>
+      </div>
+      <div id="title">Texter</div>
+    </div>
+    <div id="back">
+      <a href="/experiments"> More experiments </a> <span>&lsaquo;</span>
+    </div>
+    <script type="text/javascript" src="js/header.js"></script>
 
+    <!-- APP -->
+    <canvas id="canvas"></canvas>
+    <script>
+      var texter = new Texter();
+      texter.initialize();
 
-	<body>
+      var gui = new dat.GUI();
+      gui
+        .add(texter, "text")
+        .name("Text")
+        .onChange(function () {
+          texter.onTextChange();
+        });
+      gui.add(texter, "minFontSize", 3, 100).name("Minimum Size");
+      gui.add(texter, "maxFontSize", 3, 400).name("Maximum Size");
+      gui.add(texter, "angleDistortion", 0, 2).step(0.1).name("Random Angle");
+      gui
+        .addColor(texter, "textColor")
+        .name("Text Color")
+        .onChange(function (value) {
+          texter.applyNewColor(value);
+        });
+      gui
+        .addColor(texter, "bgColor")
+        .name("Background Color")
+        .onChange(function (value) {
+          texter.setBackground(value);
+        });
+      gui.add(texter, "clear").name("Clear");
+      gui.add(texter, "save").name("Save");
+    </script>
 
-		<!-- Header -->
-		<div id="info-tab">  		
-    		<div class="info first">
-        		<b>Texter</b> is a little javascript experiment that lets you explore your creativity by drawing with words. This app is an extension of a demo from this <a href="http://generative-gestaltung.de/">book</a>
-        		<p> 
-        			Made by: <a href="http://tholman.com"> Tim Holman </a> - <a href="http://twitter.com/twholman" title="You'll love my tweets, I promise ;)"> @twholman </a>
-     			</p>
-    		</div>
-    		<div class="info">
-        		This has been made using <i> Javascript </i> and the HTML5 <i> canvas </i> element. You can find the source on <a href="http://github.com/tholman/texter">Github</a>  
-        		<p>
-            		<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://tholman.com/experiments/html5/texter" data-text="Texter - Draw pictures with text! - by @twholman -"> Tweet </a>
-           			<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Ftholman.com%2Fexperiments%2Fhtml5%2Ftexter&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:107px; height:21px; margin-bottom: -1px;" allowTransparency="true"></iframe>
-        		</p>
-   			</div>
-    		<div id="title">Texter</div>
-		</div>
-		<div id="back">
-    		<a href="/experiments"> More experiments </a> <span>&lsaquo;</span>
-		</div>
-		<script type="text/javascript" src="js/header.js"></script>
+    <!-- Misc -->
+    <script>
+      !(function (d, s, id) {
+        var js,
+          fjs = d.getElementsByTagName(s)[0];
+        if (!d.getElementById(id)) {
+          js = d.createElement(s);
+          js.id = id;
+          js.src = "http://platform.twitter.com/widgets.js";
+          fjs.parentNode.insertBefore(js, fjs);
+        }
+      })(document, "script", "twitter-wjs");
+    </script>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(["_setAccount", "UA-22825241-1"]);
+      _gaq.push(["_trackPageview"]);
 
-
-		<!-- APP -->
-		<canvas id='canvas'></canvas>
-		<script>
-			var texter = new Texter();
-			texter.initialize();
-
-			var gui = new dat.GUI();
-			gui.add(texter, 'text').name( 'Text' ).onChange( function() { texter.onTextChange() } );
-			gui.add(texter, 'minFontSize', 3, 100).name( 'Minimum Size' );
-			gui.add(texter, 'maxFontSize', 3, 400).name( 'Maximum Size' );
-			gui.add(texter, 'angleDistortion', 0, 2).step(0.1).name( 'Random Angle' );
-			gui.addColor(texter, 'textColor').name( 'Text Color' ).onChange( function(value) { texter.applyNewColor( value ) } );
-			gui.addColor(texter, 'bgColor').name( 'Background Color' ).onChange( function(value) { texter.setBackground( value ) } );
-			gui.add(texter, 'clear').name( 'Clear' );
-			gui.add(texter, 'save').name( 'Save' );
-
-		</script>
-
-		<!-- Misc -->
-		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="http://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-		<script type="text/javascript">
-		  var _gaq = _gaq || [];
-		  _gaq.push(['_setAccount', 'UA-22825241-1']);
-		  _gaq.push(['_trackPageview']);
-
-		  (function() {
-		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		  })();
-		</script>
-
-
-	</body>
-
+      (function () {
+        var ga = document.createElement("script");
+        ga.type = "text/javascript";
+        ga.async = true;
+        ga.src =
+          ("https:" == document.location.protocol
+            ? "https://ssl"
+            : "http://www") + ".google-analytics.com/ga.js";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
 </html>
